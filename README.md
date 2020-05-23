@@ -20,4 +20,5 @@ K value
 Array elemts
 ```
 
+### Output
 Minimum Cost
