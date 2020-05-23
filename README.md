@@ -17,7 +17,7 @@ npm run start
 ```bash
 Array size
 K value
-Array elemts
+Array elements
 ```
 
 ### Output
