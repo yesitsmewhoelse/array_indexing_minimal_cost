@@ -1,95 +1,23 @@
-## business-rule-service
-Implementing business rule as a service.          
+## Problem Statement
+You are given a sorted array a1,a2,...,an (for each index i > 1 condition ai ≥ ai−1 holds) and an integer k. You are asked to divide this array into k non-empty consecutive subarrays. Every element in the array should be included in exactly one subarray.
+Let max(i) be equal to the maximum in the i-th subarray, and min(i) be equal to the minimum in the i-th subarray. The cost of division is equal to i = 1k(max(i)^2 − min(i)^2)
 
+Calculate the minimum cost you can obtain by dividing the array a into k non-empty consecutive subarrays.
+### Installation
 
-## API Methods
-
-## To execute a Business Rule
-
-### `POST  api/business-rule-service/v1/execute`
-
-This method takes the metadata/id(or both) and config object in request body and executes the corresponding business rule. Depending on the input, the business rule is executed using either id or business rule. If both are supplied, the business rule will be executed using metadata.
-
-**Req.body**|**type**|**description**
------|-----|-----
-metadata|Object|Business rule runtime metadata object.
-id|String| Busines rule id.
-input|Object (optional)|Business rule runtime input.
-config|?Object|An object containing any runtime configuration overrides.
-
-
-## Sample request body           
-
+```bash
+git clone https://github.com/yesitsmewhoelse/array_indexing_minimal_cost.git
+npm install
+npm run start
 ```
- {            
-        "metadata": {},             
-        "id": "",               
-        "input": {},                
-        "config": {            
-             "mask": "",                   
-             "headers" : {},                 
-             "context": ""                 
-         },              
- }
- ```
 
-**returns**|**description**
------|-----
-*|Business rule output
 
-## To get metadata of a Business Rule
+### Inputs
 
-### `GET  api/business-rule-service/v1/id?mask=%?context=%?language=%`
-
-This method takes the object id of type business rule in the get request and mask, context and language as query parameter and fetches business rule metadata.
-
-**query parameters**|**type**|**description**
------|-----|-----
-mask|String|
-context|String|The platform context.
-language|String|Cultural info for business rule  (Optional)
-
-**returns**|**description**
------|-----
-*|Runtime view of the business rule metadata.
-
-## Health check
-
-### `GET  api/business-rule-service/v1/health`
-
-This method is used to check if the business rule service is reachable or not.
-
-**returns**|**description**
------|-----
-200|Ready status of the business rule service.
-
-## BusinessRuleService as a side-car
-
-To implement the buisness rule service in the same pod with another existing parent service( side-car pattern ), add an entry similar to the following under the containers label in the parent service deployment.yaml.
-
-Please make sure the environment variable “BUSINESSRULE_SERVICE_PORT” is set with the desired port on which the business rule service should listen. In absence of this variable, the port will be defaulted to 8080 which may conflict with parent service.
-
-Sample:
+```bash
+Array size
+K value
+Array elemts
 ```
-      - name: business-rule-service
-        image: dockertr.es.ad.adp.com/bu/business-rule-service:1.0.0-0005-f2106330
-        imagePullPolicy: IfNotPresent
-        env:
-        - name: BUSINESSRULE_SERVICE_PORT
-           value: “9090"
-        ports:
-        - name: http
-          containerPort: 9090
-          protocol: TCP
-        livenessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /api/business-rule-service/v1/health
-            port: 9090
-            scheme: HTTP
-          initialDelaySeconds: 30
-          periodSeconds: 30
-          successThreshold: 1
-          timeoutSeconds: 29
 
-```
+Minimum Cost
