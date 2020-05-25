@@ -14,8 +14,10 @@ for(i=0 ; i<(size-1); i++) {
 }
 tempArr.sort(function(a, b){return a - b});
 
-for(i=0; i < (size-k); i++) {
-    cost += tempArr[i];
+cost = (inputArray[size-1]*inputArray[size-1]) - (inputArray[0]*inputArray[0]);
+
+for(i = (size - 2); i > (size - k -1); i--) {
+    cost -= tempArr[i];
 }
 
 console.log('Cost: ',cost);
